@@ -1,0 +1,41 @@
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+	<property name="LOG_ROOT" value="c:/temp/logs" />
+	<property name="LOG_FILE_NAME" value="customer-service" />
+    <!-- Console Appender -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%green(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%-40.40logger{40}): %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- Rolling File Appender -->   
+    <appender name="rolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_ROOT}/${LOG_FILE_NAME}.log</file>
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT}/${LOG_FILE_NAME}-%d{dd-MM-yyyy}.%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                 <!-- size max for archived file -->
+                <maxFileSize>10MB</maxFileSize>
+                <!-- total size of all archive files -->
+            	<totalSizeCap>5GB</totalSizeCap>
+                 <!-- 30 days to keep --> 
+            	<maxHistory>30</maxHistory>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logger Configuration -->
+    <logger name="fr.tao.customerservice" level="info" additivity="false">
+        <appender-ref ref="console"/>
+        <appender-ref ref="rolling"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="rolling"/>
+    </root>
+</configuration>

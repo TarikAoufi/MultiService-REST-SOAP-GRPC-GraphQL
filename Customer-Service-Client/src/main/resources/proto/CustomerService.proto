@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "fr.tao.customerserviceclient.grpc.generated";
+
+service CustomerService {
+	rpc getAllCustomers (Empty) returns (CustomerList);
+  	rpc GetCustomerById (CustomerId) returns (CustomerResponse);
+  	rpc createCustomer (CustomerRequest) returns (CustomerResponse);
+}
+
+message Empty {}
+
+message CustomerId  {
+    int64 id = 1;
+}
+
+message CustomerRequest {
+    string name = 1;
+    string email = 2;
+}
+
+message CustomerResponse {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+message CustomerList {
+  repeated CustomerResponse customers = 1;
+}

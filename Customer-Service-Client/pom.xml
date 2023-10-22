@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>fr.tao</groupId>
+	<artifactId>Customer-Service-Client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Customer-Service-Client</name>
+	<description>Microservice Client for REST, SOAP, GRPC and GraphQL APIs consumption</description>
+	<properties>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.4</spring-cloud.version>
+		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+		<grpc.version>1.58.0</grpc.version>
+		<protobuf.version>3.24.3</protobuf.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-graphql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- ================== For REST =================== -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
+		</dependency>
+		<!-- To use WebClient -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		
+		<!-- ================== For SOAP =================== -->
+	    <!-- jaxws-ri -->
+		<dependency>
+		    <groupId>com.sun.xml.ws</groupId>
+		    <artifactId>jaxws-ri</artifactId>
+		    <version>4.0.1</version>
+		    <type>pom</type>
+		</dependency>
+		<!-- jakarta.annotation-api -->
+		<dependency>
+		    <groupId>jakarta.annotation</groupId>
+		    <artifactId>jakarta.annotation-api</artifactId>
+		    <optional>true</optional>
+		</dependency>
+		<!-- javax.annotation-api -->
+		<dependency>
+		    <groupId>javax.annotation</groupId>
+		    <artifactId>javax.annotation-api</artifactId>
+		    <version>1.3.2</version>
+		</dependency>
+		
+		<!-- =============== For GRPC ================== -->
+	    <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf.version}</version>
+        </dependency>
+	    <dependency>
+	        <groupId>io.grpc</groupId>
+	        <artifactId>grpc-protobuf</artifactId>
+	        <version>${grpc.version}</version> 
+	    </dependency>
+	    <dependency>
+	        <groupId>io.grpc</groupId>
+	        <artifactId>grpc-stub</artifactId>
+	        <version>${grpc.version}</version>
+	    </dependency>
+	    <dependency>
+		    <groupId>io.grpc</groupId>
+		    <artifactId>grpc-netty</artifactId>
+		    <version>${grpc.version}</version>
+		</dependency>
+	    <dependency>
+		    <groupId>io.grpc</groupId>
+		    <artifactId>grpc-netty-shaded</artifactId>
+		    <version>${grpc.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.devh</groupId>
+		    <artifactId>grpc-client-spring-boot-starter</artifactId>
+		    <version>2.15.0.RELEASE</version>
+		</dependency>
+	    <!-- ====================================== -->
+	    
+	    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.graphql</groupId>
+			<artifactId>spring-graphql-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- caffeine -->
+		<dependency>
+		    <groupId>com.github.ben-manes.caffeine</groupId>
+		    <artifactId>caffeine</artifactId>
+		</dependency>
+	    
+	    <!-- gson -->
+	    <dependency>
+	      <groupId>com.google.code.gson</groupId>
+	      <artifactId>gson</artifactId>
+	    </dependency>
+	    <!-- mapstruct -->
+		<dependency>
+		    <groupId>org.mapstruct</groupId>
+		    <artifactId>mapstruct</artifactId>
+		    <version>${org.mapstruct.version}</version>
+		</dependency>	
+	</dependencies>
+	
+    <!-- === When we use spring-cloud === -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <configuration>
+					<source>${java.version}</source> 
+	                <target>${java.version}</target>	
+	                <annotationProcessorPaths>
+	                    <path>
+	                        <groupId>org.mapstruct</groupId>
+	                        <artifactId>mapstruct-processor</artifactId>
+	                        <version>${org.mapstruct.version}</version>
+	                    </path>
+	                    <path>
+			                 <groupId>org.projectlombok</groupId>
+			                 <artifactId>lombok</artifactId>
+			                 <version>${lombok.version}</version>
+			             </path>
+			             <dependency>
+			                 <groupId>org.projectlombok</groupId>
+			                 <artifactId>lombok-mapstruct-binding</artifactId>
+			                 <version>0.2.0</version>
+			             </dependency>
+	                </annotationProcessorPaths>
+	            </configuration>
+	        </plugin>
+	        <!-- ============= For SOAP ============ -->
+			<plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>4.0.3</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceRoot>${basedir}/src/main/java</sourceRoot>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/wsdl/CustomerSoapService.wsdl</wsdl>
+                                      <faultSerialVersionUID>1</faultSerialVersionUID>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        <defaultOptions>
+	                        <!-- the package path for generated sources -->
+                            <packagenames>
+                                <packagename>fr.tao.customerserviceclient.soap.generated</packagename>
+                            </packagenames>
+                        </defaultOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- ============= For GRPC ============ -->
+            <plugin>
+                <groupId>com.github.os72</groupId>
+                <artifactId>protoc-jar-maven-plugin</artifactId>
+                <version>3.11.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <configuration>
+				    <includeMavenTypes>direct</includeMavenTypes>
+				    <inputDirectories>
+				        <include>src/main/resources/proto</include>
+				    </inputDirectories>
+				    <outputTargets>
+				        <outputTarget>
+				            <type>java</type>
+				            <outputDirectory>src/main/java</outputDirectory>
+				        </outputTarget>
+				        <outputTarget>
+				            <type>grpc-java</type>
+				            <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}</pluginArtifact>
+				            <outputDirectory>src/main/java</outputDirectory>
+				        </outputTarget>
+				    </outputTargets>                    
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+
+</project>
