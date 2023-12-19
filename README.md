@@ -76,5 +76,5 @@ This microservice acts as a consumer of the web services provided by the 'Custom
 This application leverages modern technologies and best practices to develop a microservices-based architecture, 
 enabling robust customer management and consumption of these services through various client libraries. 
 The provided REST, SOAP, GraphQL, and gRPC services, along with their respective clients, allow 
-for flexible and efficient interactions within the system.
+for flexible and efficient interactions within the system. 
 
