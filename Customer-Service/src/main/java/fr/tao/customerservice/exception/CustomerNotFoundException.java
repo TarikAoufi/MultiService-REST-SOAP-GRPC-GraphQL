@@ -12,14 +12,14 @@ import fr.tao.customerservice.util.MessageUtil;
  */
 public class CustomerNotFoundException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 	
-	/**
+    /**
      * Constructs a new CustomerNotFoundException with the provided customer ID.
      *
      * @param id The ID of the customer that was not found.
      */
-	public CustomerNotFoundException(Long id) {
+    public CustomerNotFoundException(Long id) {
         super(MessageUtil.CUSTOMER_BY_ID_NOT_FOUND + id);
     }
 	
