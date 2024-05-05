@@ -25,30 +25,30 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerServiceApplication {
 	
-	/**
+    /**
      * The main method to start the CustomerServiceApplication.
      *
      * @param args Command-line arguments.
      */
-	public static void main(String[] args) {
-		log.info("Starting CustomerServiceApplication...");
-		SpringApplication.run(CustomerServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+	log.info("Starting CustomerServiceApplication...");
+	SpringApplication.run(CustomerServiceApplication.class, args);
+    }
 	
-	/**
+    /**
      * This method defines a command-line runner bean that initializes sample customer data.
      *
      * @param customerService The CustomerService instance to use for saving customer data.
      * @return A CommandLineRunner that initializes sample customer data.
      */
-	@Bean
-	CommandLineRunner run(CustomerService customerService) {		
-		return args -> {		
-			customerService.saveCustomer(new CustomerDto(0L, "momo", "momo@gmail.com"));
-			customerService.saveCustomer(new CustomerDto(0L, "moha", "moha@gmail.com"));			
-			customerService.saveCustomer(new CustomerDto(0L, "zakia", "zakia@gmail.com"));
-			customerService.saveCustomer(new CustomerDto(0L, "ali", "ali@gmail.com"));
-		};		
-	}
+    @Bean
+    CommandLineRunner run(CustomerService customerService) {		
+	return args -> {		
+	    customerService.saveCustomer(new CustomerDto(0L, "momo", "momo@gmail.com"));
+	    customerService.saveCustomer(new CustomerDto(0L, "moha", "moha@gmail.com"));			
+	    customerService.saveCustomer(new CustomerDto(0L, "zakia", "zakia@gmail.com"));
+	    customerService.saveCustomer(new CustomerDto(0L, "ali", "ali@gmail.com"));
+	};		
+    }
 
 }
