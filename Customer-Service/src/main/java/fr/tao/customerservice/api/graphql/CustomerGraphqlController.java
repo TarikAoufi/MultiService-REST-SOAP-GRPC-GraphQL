@@ -26,55 +26,55 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CustomerGraphqlController {
 	
-	/**
+    /**
      * A required constructor-based injection of the CustomerService.
      */
-	@NonNull private final CustomerService customerService;
+    @NonNull private final CustomerService customerService;
 	
-	/**
+    /**
      * Retrieves a list of all customers.
      * 
      * @return A list of CustomerDto objects representing all customers.
      * @throws Exception if there is an error during the operation.
      */
-	@QueryMapping
-	public List<CustomerDto> allCustomer() throws Exception {
-		return customerService.getAllCustomer();
-	}
+    @QueryMapping
+    public List<CustomerDto> allCustomer() throws Exception {
+	return customerService.getAllCustomer();
+    }
 	
-	/**
+    /**
      * Retrieves a list of customers by their name.
      * 
      * @param name The name to search for within customer names.
      * @return A list of CustomerDto objects representing customers with names containing the given string.
      * @throws Exception if there is an error during the operation.
      */
-	@QueryMapping
-	public List<CustomerDto> customerByName(@Argument String name) throws Exception {
-		return customerService.getCustomersByNameContains(name);
-	}
+    @QueryMapping
+    public List<CustomerDto> customerByName(@Argument String name) throws Exception {
+	return customerService.getCustomersByNameContains(name);
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their ID.
      * 
      * @param id The ID of the customer to retrieve.
      * @return A CustomerDto object representing the customer with the specified ID.
      * @throws Exception if there is an error during the operation.
      */
-	@QueryMapping
-	public CustomerDto customerById(@Argument Long id) throws Exception {
-		return customerService.getCustomerById(id);
-	}
+    @QueryMapping
+    public CustomerDto customerById(@Argument Long id) throws Exception {
+	return customerService.getCustomerById(id);
+    }
 	
-	/**
+    /**
      * Saves a new customer.
      * 
      * @param customer The CustomerDto object to be saved.
      * @return A CustomerDto object representing the saved customer.
      * @throws Exception if there is an error during the operation.
      */
-	@MutationMapping
-	public CustomerDto saveCustomer(@Argument CustomerDto customer) throws Exception {
-		return customerService.saveCustomer(customer);
-	}
+    @MutationMapping
+    public CustomerDto saveCustomer(@Argument CustomerDto customer) throws Exception {
+	return customerService.saveCustomer(customer);
+    }
 }
