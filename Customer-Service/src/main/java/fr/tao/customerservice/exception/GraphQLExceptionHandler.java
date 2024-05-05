@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GraphQLExceptionHandler extends DataFetcherExceptionResolverAdapter {
 	
-	/**
+    /**
      * Resolves the provided exception to a GraphQL error, based on its class name, 
      * and maps it accordingly.
      *
@@ -29,20 +29,20 @@ public class GraphQLExceptionHandler extends DataFetcherExceptionResolverAdapter
      * @param env The DataFetchingEnvironment associated with the GraphQL operation.
      * @return A GraphQL error object if the exception is recognized, or null if it is not.
      */
-	@Override
-	protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
-	    switch (ex.getClass().getSimpleName()) {
-	        case "CustomerNotFoundException" :
-	        	log.error("Customer not found: {}", ex.getMessage());
-	        	return GraphqlErrorBuilder.newError()
-	                    .errorType(ErrorType.NOT_FOUND)
-	                    .message(ex.getMessage())
-	                    .path(env.getExecutionStepInfo().getPath())
-	                    .location(env.getField().getSourceLocation())
-	                    .build();
-	        default: 
-	        	return null;
-	    }
-	}		
+    @Override
+    protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
+	switch (ex.getClass().getSimpleName()) {
+	    case "CustomerNotFoundException" :
+	        log.error("Customer not found: {}", ex.getMessage());
+	        return GraphqlErrorBuilder.newError()
+	                .errorType(ErrorType.NOT_FOUND)
+	                .message(ex.getMessage())
+	                .path(env.getExecutionStepInfo().getPath())
+	                .location(env.getField().getSourceLocation())
+	                .build();
+	    default: 
+	        return null;
+	}
+    }		
 
 }
