@@ -21,19 +21,19 @@ import fr.tao.customerserviceclient.model.Customer;
 @FeignClient(value = "Customer-API-Client", url = "${api.base_url}")
 public interface CustomerFeignClient {
 
-	/**
-	 * Retrieves a list of all customers from the Customer API.
-	 *
-	 * @return A List of Customer objects containing information about all
-	 *         customers.
-	 *
-	 *         @GetMapping("${api.uri_customers}") Annotates this method to make an
-	 *         HTTP GET request to the URI specified in "${api.uri_customers}". The
-	 *         result is expected to be deserialized into a List of Customer
-	 *         objects.
-	 */
-	@GetMapping("${api.uri_customers}")
-	List<Customer> getAllCustomers();
+    /**
+     * Retrieves a list of all customers from the Customer API.
+     *
+     * @return A List of Customer objects containing information about all
+     *         customers.
+     *
+     *         @GetMapping("${api.uri_customers}") Annotates this method to make an
+     *         HTTP GET request to the URI specified in "${api.uri_customers}". The
+     *         result is expected to be deserialized into a List of Customer
+     *         objects.
+     */
+    @GetMapping("${api.uri_customers}")
+    List<Customer> getAllCustomers();
 
 	/**
 	 * Retrieves customer information by their unique identifier.
