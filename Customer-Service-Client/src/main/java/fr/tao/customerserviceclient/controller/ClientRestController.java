@@ -34,178 +34,177 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ClientRestController {
 	
-	@NonNull private final CustomerRestTemplateClient customerRestTemplateClient;
-	@NonNull private final CustomerWebClient customerWebClient;
-	@NonNull private final CustomerFeignClient customerFeignClient;
-	@NonNull private final HttpGraphQlClient httpGraphQlClient;
-	@NonNull private final CustomerGraphQLClient customerGraphQLClient;
-	@NonNull private final CustomerSoapClient customerSoapClient;
-	@NonNull private final GrpcCustomerServiceClient grpcCustomerServiceClient;
+    @NonNull private final CustomerRestTemplateClient customerRestTemplateClient;
+    @NonNull private final CustomerWebClient customerWebClient;
+    @NonNull private final CustomerFeignClient customerFeignClient;
+    @NonNull private final HttpGraphQlClient httpGraphQlClient;
+    @NonNull private final CustomerGraphQLClient customerGraphQLClient;
+    @NonNull private final CustomerSoapClient customerSoapClient;
+    @NonNull private final GrpcCustomerServiceClient grpcCustomerServiceClient;
 
 
-	// =================== REST Client by RestTemplate 
+    // =================== REST Client by RestTemplate 
 	
-	/**
+    /**
      * Retrieve all customers using RESTful client implemented with RestTemplate.
      * 
      * @return A list of Customer objects.
      */
-	@GetMapping("${rest.template.uri_customers}")
-	public List<Customer> getAllCustomersUsingRestTemplate() {				
-		return customerRestTemplateClient.getAllCustomers();		
-	} 
+    @GetMapping("${rest.template.uri_customers}")
+    public List<Customer> getAllCustomersUsingRestTemplate() {				
+	return customerRestTemplateClient.getAllCustomers();		
+    } 
 	
-	/**
+    /**
      * Retrieve a customer by their ID using RESTful client implemented with RestTemplate.
      * 
      * @param id The ID of the customer to retrieve.
      * @return The Customer object with the specified ID.
      */
-	@GetMapping("${rest.template.uri_customerById}")
-	public Customer customerByIdUsingRestTemplate(@PathVariable Long id) {
-		return customerRestTemplateClient.getCustomerById(id);
-	}
-	
+    @GetMapping("${rest.template.uri_customerById}")
+    public Customer customerByIdUsingRestTemplate(@PathVariable Long id) {
+	return customerRestTemplateClient.getCustomerById(id);
+    }
 
-	// =================== REST Client by WebClient
+    // =================== REST Client by WebClient
 	
-	/**
+    /**
      * Retrieve all customers using RESTful client implemented with WebClient.
      * 
      * @return A Flux of Customer objects.
      */
-	@GetMapping("${rest.webclient.uri_customers}")
-	public Flux<Customer> getAllCustomersUsingWebClient() {
-		return customerWebClient.getAllCustomers();
-	}
+    @GetMapping("${rest.webclient.uri_customers}")
+    public Flux<Customer> getAllCustomersUsingWebClient() {
+	return customerWebClient.getAllCustomers();
+    }
 	
-	/**
+    /**
      * Retrieve a customer by their ID using RESTful client implemented with WebClient.
      * 
      * @param id The ID of the customer to retrieve.
      * @return A Mono containing the Customer object with the specified ID.
      */
-	@GetMapping("${rest.webclient.uri_customerById}")
-	public Mono<Customer> customerByIdUsingWebClient(@PathVariable Long id) {
+    @GetMapping("${rest.webclient.uri_customerById}")
+    public Mono<Customer> customerByIdUsingWebClient(@PathVariable Long id) {
         return customerWebClient.getCustomerById(id);
     }
 	
-	// =================== REST Client by OpenFeign 
+    // =================== REST Client by OpenFeign 
 	
-	/**
+    /**
      * Retrieves all customers using the REST client implemented with OpenFeign.
      *
      * @return A list of customers.
      */
-	@GetMapping("${rest.feign.uri_customers}")
-	public List<Customer> getAllCustomersUsingFeign() {
-		return customerFeignClient.getAllCustomers();
-	}
+    @GetMapping("${rest.feign.uri_customers}")
+    public List<Customer> getAllCustomersUsingFeign() {
+	return customerFeignClient.getAllCustomers();
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their ID using the REST client implemented with OpenFeign.
      *
      * @param id The ID of the customer to retrieve.
      * @return The customer with the specified ID.
      */
-	@GetMapping("${rest.feign.uri_customerById}")
-	Customer getCustomerByIdUsingFeign(@PathVariable Long id) {
-		return customerFeignClient.getCustomerById(id);
-	}
+    @GetMapping("${rest.feign.uri_customerById}")
+    Customer getCustomerByIdUsingFeign(@PathVariable Long id) {
+	return customerFeignClient.getCustomerById(id);
+    }
 	
-	// =================== GraphQl Client By HttpGraphQlClient 
+    // =================== GraphQl Client By HttpGraphQlClient 
 	
-	/**
+    /**
      * Retrieves all customers using the GraphQL client implemented with HttpGraphQlClient.
      *
      * @return A Mono containing a list of customers.
      */
-	@GetMapping("${graphql.uri1_customers}")
-	public Mono<List<Customer>> getAllCustomersGQLHttpGQl() {
-		return customerGraphQLClient.getAllCustomersGQLHttpGQl();
-	}
+    @GetMapping("${graphql.uri1_customers}")
+    public Mono<List<Customer>> getAllCustomersGQLHttpGQl() {
+ 	return customerGraphQLClient.getAllCustomersGQLHttpGQl();
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their ID using the GraphQL client implemented with HttpGraphQlClient.
      *
      * @param id The ID of the customer to retrieve.
      * @return A Mono containing the customer with the specified ID.
      */
-	@GetMapping("${graphql.uri1_customerById}")
-	public Mono<Customer> getCustomerByIdGQLHttpGQl(@PathVariable Long id) {
-		return customerGraphQLClient.getCustomerByIdGQLHttpGQl(id);
-	}
+    @GetMapping("${graphql.uri1_customerById}")
+    public Mono<Customer> getCustomerByIdGQLHttpGQl(@PathVariable Long id) {
+ 	return customerGraphQLClient.getCustomerByIdGQLHttpGQl(id);
+    }
 	
-	// =================== GraphQl Client By WebClient
+    // =================== GraphQl Client By WebClient
 	
-	/**
+    /**
      * Retrieves all customers using the GraphQL client implemented with WebClient.
      *
      * @return A list of customers.
      * @throws Exception if an error occurs during the retrieval.
      */
-	@GetMapping("${graphql.uri2_customers}")
-	public List<Customer> getAllCustomersGQLWebClient() throws Exception {
-		return  customerGraphQLClient.getAllCustomersGQLWebClient();
-	}
+    @GetMapping("${graphql.uri2_customers}")
+    public List<Customer> getAllCustomersGQLWebClient() throws Exception {
+	return  customerGraphQLClient.getAllCustomersGQLWebClient();
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their ID using the GraphQL client implemented with WebClient.
      *
      * @param id The ID of the customer to retrieve.
      * @return The customer with the specified ID.
      * @throws Exception if an error occurs during the retrieval.
      */
-	@GetMapping("${graphql.uri2_customerById}")
-	public Customer getCustomerByIdGQLWebClient(@PathVariable Long id) throws Exception {
-		return customerGraphQLClient.getCustomerByIdGQLWebClient(id);
+    @GetMapping("${graphql.uri2_customerById}")
+    public Customer getCustomerByIdGQLWebClient(@PathVariable Long id) throws Exception {
+	return customerGraphQLClient.getCustomerByIdGQLWebClient(id);
     }	
 	
-	// =================== SOAP Client By jaxws and cxf-codegen-plugin
+    // =================== SOAP Client By jaxws and cxf-codegen-plugin
 	
-	/**
+    /**
      * Retrieves all customers using the SOAP client implemented with jaxws and cxf-codegen-plugin.
      *
      * @return A list of customers.
      * @throws Exception if an error occurs during the retrieval.
      */
-	@GetMapping("${soap.uri_customers}")
-	public List<Customer> getAllCustomersSOAP() throws Exception {
-		return customerSoapClient.getAllCustomers();		
-	}
+    @GetMapping("${soap.uri_customers}")
+    public List<Customer> getAllCustomersSOAP() throws Exception {
+	return customerSoapClient.getAllCustomers();		
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their ID using the SOAP client implemented with jaxws and cxf-codegen-plugin.
      *
      * @param id The ID of the customer to retrieve.
      * @return The customer with the specified ID.
      */
-	@GetMapping("${soap.uri_customerById}")
-	public Customer getCustomerByIdSOAP(@PathVariable Long id) {
-		return customerSoapClient.getCustomerById(id);		
-	}
+    @GetMapping("${soap.uri_customerById}")
+    public Customer getCustomerByIdSOAP(@PathVariable Long id) {
+	return customerSoapClient.getCustomerById(id);		
+    }
 	
-	// ===================  GRPC Client By protoc-jar-maven-plugin 
+    // ===================  GRPC Client By protoc-jar-maven-plugin 
 	
-	/**
+    /**
      * Retrieve all customers using GRPC client implemented with protoc-jar-maven-plugin.
      * 
      * @return A list of Customer objects.
      */
-	@GetMapping("${grpc.uri_customers}")
-	public List<Customer> getAllCustomersGRPC() {
-		return grpcCustomerServiceClient.getAllCustomers();
-	}
+    @GetMapping("${grpc.uri_customers}")
+    public List<Customer> getAllCustomersGRPC() {
+	return grpcCustomerServiceClient.getAllCustomers();
+    }
 	
-	/**
+    /**
      * Retrieve a customer by their ID using GRPC client implemented with protoc-jar-maven-plugin.
      * 
      * @param id The ID of the customer to retrieve.
      * @return The Customer object with the specified ID.
      */
-	@GetMapping("${grpc.uri_customerById}")
-	public Customer getCustomerByIdGRPC(@PathVariable Long id) {
-		return grpcCustomerServiceClient.getCustomerById(id);		
-	}
+    @GetMapping("${grpc.uri_customerById}")
+    public Customer getCustomerByIdGRPC(@PathVariable Long id) {
+	return grpcCustomerServiceClient.getCustomerById(id);		
+    }
 
 }
