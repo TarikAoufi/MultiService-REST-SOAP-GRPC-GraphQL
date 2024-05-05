@@ -24,39 +24,39 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 @Slf4j
 public class GrpcCustomerServiceClient {
 	
-	/**
-	 * The gRPC blocking stub for customer service.
-	 */
-	@GrpcClient(value = "grpcCustomerClient")
-	private CustomerServiceGrpc.CustomerServiceBlockingStub blockingStub;
+    /**
+     * The gRPC blocking stub for customer service.
+     */
+    @GrpcClient(value = "grpcCustomerClient")
+    private CustomerServiceGrpc.CustomerServiceBlockingStub blockingStub;
 	
-	/**
+    /**
      * Mapper for converting between Customer DTOs and Customer objects.
      */
-	@Autowired
-	private CustomerMapper customerMapper;
+    @Autowired
+    private CustomerMapper customerMapper;
 
-	/**
+    /**
      * Retrieves a list of all customers from the gRPC server.
      *
      * @return A list of Customer objects.
      */
-	public List<Customer> getAllCustomers() {
-		log.info("GrpcCustomerServiceClient - Fetching all customers.");
-		var response = blockingStub.getAllCustomers(Empty.newBuilder().build());
+    public List<Customer> getAllCustomers() {
+	log.info("GrpcCustomerServiceClient - Fetching all customers.");
+	var response = blockingStub.getAllCustomers(Empty.newBuilder().build());
         return customerMapper.fromCustomerResponses(response.getCustomersList());
 
-	}
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their unique identifier from the gRPC server.
      *
      * @param id The unique identifier of the customer.
      * @return A Customer object if found, or null if not found.
      */
-	public Customer getCustomerById(Long id) {
-		log.info("GrpcCustomerServiceClient - Fetching customer with ID: {}", id);
-		var customerId = CustomerId.newBuilder().setId(id).build();
+    public Customer getCustomerById(Long id) {
+	log.info("GrpcCustomerServiceClient - Fetching customer with ID: {}", id);
+	var customerId = CustomerId.newBuilder().setId(id).build();
         return customerMapper.fromCustomerResponse(blockingStub.getCustomerById(customerId));
     }
 
