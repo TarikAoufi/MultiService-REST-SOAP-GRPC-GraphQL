@@ -33,7 +33,7 @@ public class RemoteApiProperties {
 	
 	@Value("${soap.url}")
 	private String soapUrl; // URL for SOAP service.
-	
+
 	/**
      * Constructs and returns the full URL for the remote API by appending the provided URI to the base URL.
      *
