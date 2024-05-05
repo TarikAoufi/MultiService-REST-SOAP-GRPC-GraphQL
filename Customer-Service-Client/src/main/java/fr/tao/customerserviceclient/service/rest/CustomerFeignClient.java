@@ -35,20 +35,20 @@ public interface CustomerFeignClient {
     @GetMapping("${api.uri_customers}")
     List<Customer> getAllCustomers();
 
-	/**
-	 * Retrieves customer information by their unique identifier.
-	 *
-	 * @param id The unique identifier of the customer to retrieve.
-	 * @return A Customer object containing information about the requested
-	 *         customer.
-	 *
-	 *         @GetMapping("${api.uri_customers}/{id}") Annotates this method to
-	 *         make an HTTP GET request to the URI specified in
-	 *         "${api.uri_customers}/{id}". The "{id}" part is replaced with the
-	 *         actual value of the "id" parameter. The result is expected to be
-	 *         deserialized into a Customer object.
-	 */
-	@GetMapping("${api.uri_customers}/{id}")
-	Customer getCustomerById(@PathVariable("id") Long id);
+    /**
+     * Retrieves customer information by their unique identifier.
+     *
+     * @param id The unique identifier of the customer to retrieve.
+     * @return A Customer object containing information about the requested
+     *         customer.
+     *
+     *         @GetMapping("${api.uri_customers}/{id}") Annotates this method to
+     *         make an HTTP GET request to the URI specified in
+     *         "${api.uri_customers}/{id}". The "{id}" part is replaced with the
+     *         actual value of the "id" parameter. The result is expected to be
+     *         deserialized into a Customer object.
+     */
+    @GetMapping("${api.uri_customers}/{id}")
+    Customer getCustomerById(@PathVariable("id") Long id);
 
 }
