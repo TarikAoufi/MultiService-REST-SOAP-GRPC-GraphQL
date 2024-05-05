@@ -14,19 +14,19 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class CustomerDto {
 	
-	/**
+    /**
      * The unique identifier for the customer.
      */
-	private Long id;	
+    private Long id;	
 	
-	/**
+    /**
      * The name of the customer.
      */
-	private String name;
+    private String name;
 	
-	/**
+    /**
      * The email address of the customer.
      */
-	private String email;
+    private String email;
 
 }
