@@ -27,43 +27,43 @@ import lombok.RequiredArgsConstructor;
 @WebService(serviceName = "CustomerWS")
 public class CustomerSoapService {
 	
-	/**
+    /**
      * The service responsible for handling customer data operations.
      */
-	@NonNull private final CustomerService customerService;
+    @NonNull private final CustomerService customerService;
 	
-	/**
+    /**
      * Retrieves a list of all customers.
      *
      * @return A list of CustomerDto objects representing all customers.
      * @throws Exception If an error occurs during the operation.
      */
-	@WebMethod
-	public List<CustomerDto> getAllCustomer() throws Exception {
-		return customerService.getAllCustomer();
-	}
+    @WebMethod
+    public List<CustomerDto> getAllCustomer() throws Exception {
+	return customerService.getAllCustomer();
+    }
 	
-	/**
+    /**
      * Retrieves a customer by their unique identifier.
      *
      * @param customerId The identifier of the customer to retrieve.
      * @return A CustomerDto object representing the customer with the specified ID.
      */
-	@WebMethod
-	public CustomerDto customerById(@WebParam(name = "id") Long customerId) {
-		return customerService.getCustomerById(customerId); 
-	}
+    @WebMethod
+    public CustomerDto customerById(@WebParam(name = "id") Long customerId) {
+	return customerService.getCustomerById(customerId); 
+    }
 	
-	/**
+    /**
      * Saves a new customer's information.
      *
      * @param customerDto The CustomerDto object containing customer information to be saved.
      * @return The saved CustomerDto object.
      * @throws Exception If an error occurs during the operation.
      */
-	@WebMethod
-	public CustomerDto saveCustomer(@WebParam(name = "customer") CustomerDto customerDto) throws Exception {
-		return customerService.saveCustomer(customerDto);
-	}
+    @WebMethod
+    public CustomerDto saveCustomer(@WebParam(name = "customer") CustomerDto customerDto) throws Exception {
+	return customerService.saveCustomer(customerDto);
+    }
 
 }
