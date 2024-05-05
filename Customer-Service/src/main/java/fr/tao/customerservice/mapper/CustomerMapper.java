@@ -27,17 +27,17 @@ import fr.tao.customerservice.grpc.generated.CustomerResponse;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CustomerMapper {
 	
-	CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
+    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 	
-	/**
+    /**
      * Converts a Customer entity to a CustomerDto.
      *
      * @param customer The Customer entity to be converted.
      * @return The corresponding CustomerDto.
      */
-	CustomerDto toDto(Customer customer);
+    CustomerDto toDto(Customer customer);
 	
-	/**
+    /**
      * Converts a CustomerDto to a Customer entity.
      *
      * @param customerDto The CustomerDto to be converted.
@@ -53,7 +53,7 @@ public interface CustomerMapper {
      * @param customer     The target Customer entity to be updated.
      */
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-	void updateCustomerFromDto(CustomerDto customerDto, @MappingTarget Customer customer);
+    void updateCustomerFromDto(CustomerDto customerDto, @MappingTarget Customer customer);
     
     /**
      * Converts a list of Customer entities to a list of CustomerDto objects.
