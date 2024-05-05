@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 @Data @AllArgsConstructor @NoArgsConstructor
 public class GraphqlRequest {
 	
-	/**
-	 * The GraphQL query string
-	 */
-	private String query;
+    /**
+     * The GraphQL query string
+     */
+    private String query;
 
 }
