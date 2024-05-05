@@ -18,12 +18,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Customer {
 	
-	/**
+    /**
      * The unique identifier for the customer.
      */
-	private Long id;
+    private Long id;
 
-	/**
+    /**
      * The name of the customer.
      */
     private String name;
@@ -31,6 +31,6 @@ public class Customer {
     /**
      * The email address of the customer.
      */
-	private String email;
+    private String email;
 
 }
