@@ -36,7 +36,7 @@ class CustomerRestControllerTest extends CommonTestSetup {
     private CustomerService customerService;
           
     @BeforeEach
-	public void setUp() { 	
+    public void setUp() { 	
     	// Initialize test data before each test case
     	initTestData();
     }
@@ -52,12 +52,12 @@ class CustomerRestControllerTest extends CommonTestSetup {
     	// Mock service call to return a list of customers
     	when(customerService.getAllCustomer()).thenReturn(customers); 
     	
-		webTestClient
-			.get().uri(REST_ENDPOINT)
-			.accept(MediaType.APPLICATION_JSON)
-			.exchange()
-			.expectStatus().isOk()
-			.expectBodyList(CustomerDto.class).isEqualTo(customers);
+	webTestClient
+	    .get().uri(REST_ENDPOINT)
+	    .accept(MediaType.APPLICATION_JSON)
+	    .exchange()
+	    .expectStatus().isOk()
+	    .expectBodyList(CustomerDto.class).isEqualTo(customers);
     }
     
     /**
@@ -66,14 +66,14 @@ class CustomerRestControllerTest extends CommonTestSetup {
      * @throws Exception if an error occurs during testing
      */
     @Test
-	void getCustomerByIdSuccess() throws Exception {
+    void getCustomerByIdSuccess() throws Exception {
     	// Mock service call to return a specific customer
     	when(customerService.getCustomerById(customer3.getId())).thenReturn(customer3);
     	
     	webTestClient.get()
-    		.uri(REST_ENDPOINT_ID, customer3.getId())
-    		.accept(MediaType.APPLICATION_JSON)
-    		.exchange()
+    	    .uri(REST_ENDPOINT_ID, customer3.getId())
+    	    .accept(MediaType.APPLICATION_JSON)
+    	    .exchange()
             .expectStatus().isOk()
             .expectBody(CustomerDto.class)
             .isEqualTo(customer3);
@@ -90,7 +90,7 @@ class CustomerRestControllerTest extends CommonTestSetup {
         
         // Mock the service to throw a CustomerNotFoundException (404 NOT_FOUND)
         when(customerService.getCustomerById(nonExistentCustomerId))
-        	.thenThrow(new CustomerNotFoundException(nonExistentCustomerId));
+            .thenThrow(new CustomerNotFoundException(nonExistentCustomerId));
 
         webTestClient.get()
             .uri(REST_ENDPOINT_ID, nonExistentCustomerId)
@@ -106,53 +106,53 @@ class CustomerRestControllerTest extends CommonTestSetup {
      *
      * @throws Exception if an error occurs during testing
      */
- 	@Test
- 	void createCustomerSuccess() throws Exception {
+    @Test
+    void createCustomerSuccess() throws Exception {
  		
-		when(customerService.saveCustomer(newCustomer)).thenReturn(newCustomer);
+	when(customerService.saveCustomer(newCustomer)).thenReturn(newCustomer);
 		
-		webTestClient.post()
-			.uri(REST_ENDPOINT)
-			.contentType(MediaType.APPLICATION_JSON)
+	webTestClient.post()
+            .uri(REST_ENDPOINT)
+	    .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(newCustomer)
-			.exchange()
-			.expectStatus().isCreated()
-			.expectBody(CustomerDto.class)
-			.isEqualTo(newCustomer);
- 	}
+	    .exchange()
+	    .expectStatus().isCreated()
+	    .expectBody(CustomerDto.class)
+	    .isEqualTo(newCustomer);
+    }
  	
     // ================ PUT request handler ================  	
- 	/**
+    /**
      * Test the PUT request handler for updating a customer, expecting a successful response.
      *
      * @throws Exception if an error occurs during testing
      */
- 	@Test
- 	void testUpdateCustomer() throws Exception {		
+    @Test
+    void testUpdateCustomer() throws Exception {		
  		
- 	    when(customerService.updateCustomer(customer3.getId(), updatedCustomer)).thenReturn(updatedCustomer);
+        when(customerService.updateCustomer(customer3.getId(), updatedCustomer)).thenReturn(updatedCustomer);
 
- 	    webTestClient.put()
- 	            .uri(REST_ENDPOINT_ID, customer3.getId())
- 	            .contentType(MediaType.APPLICATION_JSON)
- 	            .bodyValue(updatedCustomer)
- 	            .exchange()
- 	            .expectStatus().isOk()
- 	            .expectBody(CustomerDto.class)
- 	            .isEqualTo(updatedCustomer);
- 	}
+        webTestClient.put()
+ 	        .uri(REST_ENDPOINT_ID, customer3.getId())
+ 	        .contentType(MediaType.APPLICATION_JSON)
+ 	        .bodyValue(updatedCustomer)
+ 	        .exchange()
+ 	        .expectStatus().isOk()
+ 	        .expectBody(CustomerDto.class)
+ 	        .isEqualTo(updatedCustomer);
+    }
  	
     // ================ DELETE request handler ================	
- 	/**
+    /**
      * Test the DELETE request handler for deleting a customer, expecting a successful response.
      *
      * @throws Exception if an error occurs during testing
      */
- 	@Test
-	void deleteCustomerSuccess() throws Exception {
- 		Long customerId = customerToDelete.getId();
+    @Test
+    void deleteCustomerSuccess() throws Exception {
+ 	Long customerId = customerToDelete.getId();
  		
- 		// Mock the service to return the customer to be deleted
+ 	// Mock the service to return the customer to be deleted
         when(customerService.getCustomerById(customerId)).thenReturn(customerToDelete);      
         doAnswer(invocation -> {
             // Perform actions after calling deleteCustomer
@@ -168,6 +168,6 @@ class CustomerRestControllerTest extends CommonTestSetup {
         
         // Verify that the deleteCustomer method was called exactly once
         verify(customerService, times(1)).deleteCustomer(customerId);
-	}
+    }
 
 }
