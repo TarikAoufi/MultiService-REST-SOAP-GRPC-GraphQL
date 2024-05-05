@@ -62,7 +62,7 @@ class CustomerGrpcServiceTest {
      *
      * @throws Exception if an error occurs during the test
      */
-	@Test
+    @Test
     void getAllCustomerSuccess() throws Exception {
         var empty = Empty.newBuilder().build();
         var customerList = blockingStub.getAllCustomers(empty);       
@@ -72,7 +72,7 @@ class CustomerGrpcServiceTest {
         assertTrue(customerList.getCustomersList().size() > 0);
     }
 	
-	/**
+    /**
      * Test the functionality of creating a new customer using the CustomerService.
      */
     @Test
