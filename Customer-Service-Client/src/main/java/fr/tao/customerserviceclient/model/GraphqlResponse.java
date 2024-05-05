@@ -17,9 +17,9 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class GraphqlResponse {
 	
-	/**
-	 * A Map to store the data returned by the GraphQL query.
-	 */
-	private Map<String, Object> data;
+    /**
+     * A Map to store the data returned by the GraphQL query.
+     */
+    private Map<String, Object> data;
 	
 }
