@@ -21,41 +21,41 @@ import fr.tao.customerservice.dto.CustomerDto;
  */
 public abstract class CommonTestSetup {
 	
-	@Autowired
-	protected WebTestClient webTestClient;
+    @Autowired
+    protected WebTestClient webTestClient;
 	
-	/**
+    /**
      * ObjectMapper for JSON serialization/deserialization.
      */
-	protected ObjectMapper objectMapper = new ObjectMapper();
+    protected ObjectMapper objectMapper = new ObjectMapper();
 	
-	/**
+    /**
      * Endpoint for GraphQL requests.
      */
-	protected final String GQL_ENDPOINT = "/graphql";
+    protected final String GQL_ENDPOINT = "/graphql";
 	
-	/**
+    /**
      * Endpoint for REST API customers.
      */
-	protected final String REST_ENDPOINT = "/api/customers";
+    protected final String REST_ENDPOINT = "/api/customers";
 	
-	/**
+    /**
      * Endpoint for retrieving a specific customer by ID.
      */
-	protected final String REST_ENDPOINT_ID = REST_ENDPOINT+"/{id}";
+    protected final String REST_ENDPOINT_ID = REST_ENDPOINT+"/{id}";
 	
-	/**
+    /**
      * List of CustomerDto objects used for testing.
      */
 	protected List<CustomerDto> customers;
 	
-	/**
+    /**
      * Various CustomerDto objects for testing different scenarios.
      */
-	protected CustomerDto customer1, customer2, customer3, 
-		newCustomer, updatedCustomer, customerToDelete;
+    protected CustomerDto customer1, customer2, customer3, 
+	newCustomer, updatedCustomer, customerToDelete;
 	
-	/**
+    /**
      * Initializes test data by creating sample customers, a new customer, 
      * and updating one of the customers.
      * Additionally, a customer to be deleted is prepared.
@@ -82,8 +82,8 @@ public abstract class CommonTestSetup {
      */
     public void createNewCustomer() {
     	newCustomer = new CustomerDto();
- 	    newCustomer.setName("Titi");
-		newCustomer.setEmail("titi@gmail.com");
+ 	newCustomer.setName("Titi");
+	newCustomer.setEmail("titi@gmail.com");
     }
     
     /**
@@ -92,7 +92,7 @@ public abstract class CommonTestSetup {
     public void updateNewCustomer() {
     	updatedCustomer = customer3;
     	updatedCustomer.setName("Zakia");
- 	    updatedCustomer.setEmail("zakia.zakia@gmail.com");
+ 	updatedCustomer.setEmail("zakia.zakia@gmail.com");
     }
     
     /**
