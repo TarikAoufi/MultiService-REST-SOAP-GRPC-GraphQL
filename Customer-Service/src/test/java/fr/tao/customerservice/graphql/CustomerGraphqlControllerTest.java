@@ -34,11 +34,11 @@ import fr.tao.customerservice.util.MessageUtil;
 @AutoConfigureWebTestClient
 class CustomerGraphqlControllerTest extends CommonTestSetup {
 	
-	@Mock
+    @Mock
     protected CustomerService customerService;
 	
     @BeforeEach
-	public void setUp() { 
+    public void setUp() { 
     	// Create test data before each test
     	createTestCustomers(); 
     	createNewCustomer();
@@ -49,7 +49,7 @@ class CustomerGraphqlControllerTest extends CommonTestSetup {
      * 
      * @throws Exception if an error occurs during the test
      */
-	@Test
+    @Test
     void getAllCustomerSuccess() throws Exception {		  	
     	// Mock service call to return a list of customers
     	when(customerService.getAllCustomer()).thenReturn(customers);
@@ -64,12 +64,12 @@ class CustomerGraphqlControllerTest extends CommonTestSetup {
                 .jsonPath("$.data.allCustomer[1].name").isEqualTo(customer2.getName());
     }
 	
-	/**
+    /**
      * Test case for querying a customer by their ID via GraphQL.
      */
-	@Test
+    @Test
     void getCustomerByIdSuccess() {
-		// Mock service call to return a specific customer by ID
+	// Mock service call to return a specific customer by ID
     	when(customerService.getCustomerById(customer3.getId())).thenReturn(customer3);
     	
         webTestClient.post()
@@ -82,23 +82,23 @@ class CustomerGraphqlControllerTest extends CommonTestSetup {
                 .jsonPath("$.data.customerById.email").isEqualTo(customer3.getEmail());
     }
 	
-	/**
+    /**
      * Test case for querying customers by their name via GraphQL.
      * 
      * @throws Exception if an error occurs during the test
      */
-	@Test
+    @Test
     void getCustomerByNameSuccess() throws Exception {
-		// Create a list of customers matching the specified name
-		var customers = new ArrayList<>(Arrays.asList(customer1));  
+	// Create a list of customers matching the specified name
+	var customers = new ArrayList<>(Arrays.asList(customer1));  
 		
-	    // Create the GraphQL query with the customer's name
-		var graphqlQuery = String.format(MessageUtil.GET_CUSTOMER_BY_NAME_GQL_QUERY, customer1.getName());
+	// Create the GraphQL query with the customer's name
+	var graphqlQuery = String.format(MessageUtil.GET_CUSTOMER_BY_NAME_GQL_QUERY, customer1.getName());
 		
         // Serialise the GraphQL query in JSON
         var requestBody = objectMapper.writeValueAsString(Map.of("query", graphqlQuery));
 		
-		// Mock service call to return customers by name
+	// Mock service call to return customers by name
     	when(customerService.getCustomersByNameContains(customer1.getName())).thenReturn(customers);
 		
         webTestClient.post()
@@ -111,14 +111,14 @@ class CustomerGraphqlControllerTest extends CommonTestSetup {
                 .jsonPath("$.data.customerByName[0].name").isEqualTo(customer1.getName());
     }
 	
-	/**
+    /**
      * Test case for saving a new customer via GraphQL.
      * 
      * @throws Exception if an error occurs during the test
      */
-	@Test
+    @Test
     void saveCustomerSuccess() throws Exception {
-	    // Create the GraphQL mutation to save a new customer
+	// Create the GraphQL mutation to save a new customer
         var graphqlQuery = String.format(
             MessageUtil.SAVE_CUSTOMER_GQL_MUTATION,
             newCustomer.getName(),
