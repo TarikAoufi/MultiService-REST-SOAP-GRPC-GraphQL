@@ -45,7 +45,6 @@ public class GrpcCustomerServiceClient {
 	log.info("GrpcCustomerServiceClient - Fetching all customers.");
 	var response = blockingStub.getAllCustomers(Empty.newBuilder().build());
         return customerMapper.fromCustomerResponses(response.getCustomersList());
-
     }
 	
     /**
