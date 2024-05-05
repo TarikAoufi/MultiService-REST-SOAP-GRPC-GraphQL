@@ -32,8 +32,8 @@ import fr.tao.customerservice.service.CustomerService;
  */
 class CustomerSoapServiceTest extends CommonTestSetup {
 	
-	@InjectMocks
-	private CustomerSoapService customerSoapService;
+    @InjectMocks
+    private CustomerSoapService customerSoapService;
 
     @Mock
     private CustomerService customerService;
