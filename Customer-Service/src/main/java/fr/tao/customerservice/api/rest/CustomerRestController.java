@@ -41,67 +41,67 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerRestController {
 	
-	/**
+    /**
      * A required constructor-based injection of the CustomerService.
      */
-	@NonNull private final CustomerService customerService;
+    @NonNull private final CustomerService customerService;
 	
-	/**
+    /**
      * Get a list of all customers.
      *
      * @return ResponseEntity<List<CustomerDto>: A response entity containing a list of customer data in JSON format.
      * @throws Exception if there is an error while processing the request.
      */
-	@GetMapping
-	public ResponseEntity<List<CustomerDto>> getCustomers() throws Exception {
-		log.info("getCustomers - REST request: Getting all customers");
-		var customers = customerService.getAllCustomer();
-		return ResponseEntity.ok(customers); 	
-	}
+    @GetMapping
+    public ResponseEntity<List<CustomerDto>> getCustomers() throws Exception {
+	log.info("getCustomers - REST request: Getting all customers");
+	var customers = customerService.getAllCustomer();
+	return ResponseEntity.ok(customers); 	
+    }
 	
-	/**
+    /**
      * Get a customer by their ID.
      *
      * @param id The ID of the customer to retrieve.
      * @return ResponseEntity<CustomerDto>: A response entity containing customer data in JSON format.
      * @throws CustomerNotFoundException if the specified customer is not found.
      */
-	@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id) throws CustomerNotFoundException {
-		log.info("getCustomerById - REST request: Getting customer by ID: {}", id);
-		var customer = customerService.getCustomerById(id);
-	    return ResponseEntity.ok(customer);
+	log.info("getCustomerById - REST request: Getting customer by ID: {}", id);
+	var customer = customerService.getCustomerById(id);
+	return ResponseEntity.ok(customer);
     }
 	
-	/**
+    /**
      * Search for customers by name.
      *
      * @param name The name or part of the name to search for.
      * @return ResponseEntity<List<CustomerDto>: A response entity containing a list of matching customer data in JSON format.
      * @throws NoResultException if no matching customers are found.
      */
-	@GetMapping("/search")
-	public ResponseEntity<List<CustomerDto>> searchCustomersByName(@RequestParam String name) throws NoResultException {	
-			log.info("searchCustomersByName - REST request: Getting customers by name contains: {}", name);
-			var customerDtos = customerService.getCustomersByNameContains(name);
-			return ResponseEntity.ok().body(customerDtos);
-	}
+    @GetMapping("/search")
+    public ResponseEntity<List<CustomerDto>> searchCustomersByName(@RequestParam String name) throws NoResultException {	
+	log.info("searchCustomersByName - REST request: Getting customers by name contains: {}", name);
+	var customerDtos = customerService.getCustomersByNameContains(name);
+	return ResponseEntity.ok().body(customerDtos);
+    }
 	
-	/**
+    /**
      * Create a new customer.
      *
      * @param customerDto The customer data to be created.
      * @return ResponseEntity<CustomerDto>: A response entity containing the newly created customer data in JSON format.
      * @throws Exception if there is an error while processing the request.
      */
-	@PostMapping
-	public ResponseEntity<CustomerDto> saveCustomer(@RequestBody CustomerDto customerDto) throws Exception {	
-		log.info("saveCustomer - REST request: Saving new customer: {}", customerDto);
-		var createdCustomer = customerService.saveCustomer(customerDto);
+    @PostMapping
+    public ResponseEntity<CustomerDto> saveCustomer(@RequestBody CustomerDto customerDto) throws Exception {	
+	log.info("saveCustomer - REST request: Saving new customer: {}", customerDto);
+	var createdCustomer = customerService.saveCustomer(customerDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
-	}
+    }
 	
-	/**
+    /**
      * Update an existing customer.
      *
      * @param customerId The ID of the customer to update.
@@ -109,27 +109,27 @@ public class CustomerRestController {
      * @return ResponseEntity<CustomerDto>: A response entity containing the updated customer data in JSON format.
      * @throws Exception if there is an error while processing the request.
      */
-	@PutMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CustomerDto> updateCustomer(
-    		@PathVariable("id") Long customerId, 
-    		@RequestBody CustomerDto customerDto) throws Exception {
-		log.info("updateCustomer - REST request: Updating customer with ID: {} - New data: {}", customerId, customerDto);
+    	    @PathVariable("id") Long customerId, 
+    	    @RequestBody CustomerDto customerDto) throws Exception {
+	log.info("updateCustomer - REST request: Updating customer with ID: {} - New data: {}", customerId, customerDto);
         var updatedCustomer = customerService.updateCustomer(customerId, customerDto);
         return ResponseEntity.ok().body(updatedCustomer);
     }
 	
-	/**
+    /**
      * Delete a customer by their ID.
      *
      * @param customerId The ID of the customer to delete.
      * @return ResponseEntity<String>: A response entity with a message indicating the success of the deletion.
      * @throws Exception if there is an error while processing the request.
      */
-	@DeleteMapping("/{id}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long customerId) throws Exception {
-		log.info("deleteCustomer - REST request: Deleting customer with ID: {}", customerId);
-		customerService.deleteCustomer(customerId);		
-		return ResponseEntity.ok().body(MessageUtil.CUSTOMER_SUCCESS_DELETE);
-	}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long customerId) throws Exception {
+	log.info("deleteCustomer - REST request: Deleting customer with ID: {}", customerId);
+	customerService.deleteCustomer(customerId);		
+	return ResponseEntity.ok().body(MessageUtil.CUSTOMER_SUCCESS_DELETE);
+    }
 	
 }
