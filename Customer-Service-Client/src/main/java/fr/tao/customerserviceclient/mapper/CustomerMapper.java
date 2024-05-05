@@ -26,41 +26,41 @@ import fr.tao.customerserviceclient.soap.generated.CustomerDto;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CustomerMapper {
 	
-	/**
+    /**
      * Singleton instance of the CustomerMapper, used for accessing mapping functions.
      */
-	CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
+    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 	
-	/**
+    /**
      * Maps a CustomerDto object to a Customer object.
      *
      * @param customerDto The source CustomerDto to map from.
      * @return A mapped Customer object.
      */
-	Customer fromCustomerDto(CustomerDto customerDto);
+    Customer fromCustomerDto(CustomerDto customerDto);
 	
-	/**
+    /**
      * Maps a list of CustomerDto objects to a list of Customer objects.
      *
      * @param customerDtos The list of CustomerDtos to map from.
      * @return A list of mapped Customer objects.
      */
-	List<Customer> fromCustomerDtoList(List<CustomerDto> customerDtos);
+    List<Customer> fromCustomerDtoList(List<CustomerDto> customerDtos);
 	
-	/**
+    /**
      * Maps a CustomerResponse object to a Customer object.
      *
      * @param customerResponse The source CustomerResponse to map from.
      * @return A mapped Customer object.
      */
-	Customer fromCustomerResponse(CustomerResponse customerResponse);
+    Customer fromCustomerResponse(CustomerResponse customerResponse);
 	
-	/**
+    /**
      * Maps a list of CustomerResponse objects to a list of Customer objects.
      *
      * @param customerResponses The list of CustomerResponses to map from.
      * @return A list of mapped Customer objects.
      */
-	List<Customer> fromCustomerResponses(List<CustomerResponse> customerResponses);
+    List<Customer> fromCustomerResponses(List<CustomerResponse> customerResponses);
 
 }
