@@ -34,31 +34,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerServiceClientApplication {
 	
-	/**
-	 * Configuration properties for the remote API.
-	 */
-	@NonNull 
-	private final RemoteApiProperties remoteApiProperties;
+    /**
+     * Configuration properties for the remote API.
+     */
+    @NonNull 
+    private final RemoteApiProperties remoteApiProperties;
 	
-	/**
+    /**
      * Main method to start the Spring Boot application.
      *
      * @param args Command-line arguments.
      */
-	public static void main(String[] args) {
-		log.info("Starting CustomerServiceApplication...");
-		SpringApplication.run(CustomerServiceClientApplication.class, args);
-	}
+    public static void main(String[] args) {
+	log.info("Starting CustomerServiceApplication...");
+	SpringApplication.run(CustomerServiceClientApplication.class, args);
+    }
 	
-	/**
-	 * Creates and configures a RestTemplate bean for making REST API calls.
-	 * 
-	 * @return A RestTemplate instance.
-	 */
-	@Bean
-	RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
+    /**
+     * Creates and configures a RestTemplate bean for making REST API calls.
+     * 
+     * @return A RestTemplate instance.
+     */
+    @Bean
+    RestTemplate restTemplate() {
+	return new RestTemplate();
+    }
 	
 	/**
 	 * Creates and configures a WebClient bean for making web-based API calls 
@@ -66,7 +66,7 @@ public class CustomerServiceClientApplication {
 	 * 
 	 * @return A WebClient instance.
 	 */
-	@Bean
+    @Bean
     WebClient webClient() {
         return WebClient.builder()
         		.baseUrl(remoteApiProperties.getBaseUrl())
