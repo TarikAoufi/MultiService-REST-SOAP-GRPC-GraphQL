@@ -20,12 +20,12 @@ import fr.tao.customerservice.entity.Customer;
 @RepositoryRestResource
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
 	
-	/**
+    /**
      * Find customers whose names contain the specified keyword, 
      * regardless of letter case.
      *
      * @param keyword The keyword to search for in customer names.
      * @return A list of customers matching the search criteria.
      */
-	List<Customer> findByNameContainsIgnoreCase(String keyword);
+    List<Customer> findByNameContainsIgnoreCase(String keyword);
 }
