@@ -15,12 +15,12 @@ import lombok.Data;
 @Data @AllArgsConstructor
 public class ErrorResponse {	
 	
-	/**
+    /**
      * The HTTP status code associated with the error response.
      */
-	private HttpStatus statusCode;
+    private HttpStatus statusCode;
 	
-	/**
+    /**
      * The message describing the error.
      */
     private String message;
