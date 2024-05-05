@@ -20,7 +20,7 @@ import fr.tao.customerservice.util.MessageUtil;
 @Configuration
 public class SoapConfig {
 	
-	/**
+    /**
      * Creates and configures a SOAP endpoint for the CustomerSoapService.
      *
      * @param bus The Spring Bus instance used for managing endpoints.
